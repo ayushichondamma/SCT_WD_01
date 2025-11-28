@@ -1,0 +1,25 @@
+def encrypt(text, shift):
+    result = ""
+    for char in text:
+        if char.isalpha():
+            base = 'A' if char.isupper() else 'a'
+            result += chr((ord(char) - ord(base) + shift) % 26 + ord(base))
+        else:
+            result += char
+    return result
+
+def decrypt(text, shift):
+    return encrypt(text, -shift)
+
+# Main program
+print("=== Caesar Cipher Program ===")
+choice = input("Do you want to (E)ncrypt or (D)ecrypt? ").lower()
+message = input("Enter your message: ")
+shift = int(input("Enter shift value (e.g. 3): "))
+
+if choice == 'e':
+    print("\nEncrypted message:", encrypt(message, shift))
+elif choice == 'd':
+    print("\nDecrypted message:", decrypt(message, shift))
+else:
+    print("Invalid choice! Please type E or D.")
